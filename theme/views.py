@@ -52,7 +52,7 @@ def index(request):
         "served": time_served.days,
         "end": end_of_service,
         "left": days_left,
-        "percent": f"{percent * 100:.02f}",
+        "percent": f"{percent * 100:.01f}",
         "weeks": weeks,
         "totalDays": (end_of_service - start_of_service).days
     }
