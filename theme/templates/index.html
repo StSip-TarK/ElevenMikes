@@ -1,59 +1,40 @@
 {% extends "base.html" %}
 
 {% block content %}
-  <p>It is {{now}}</p>
-  <p>You started mil service on {{start}}</p>
-  <p>You have been serving the damn country for {{served}} days</p>
-  <p>Your service ends on {{end}}</p>
-  <p>That leaves {{left}} days of service left</p>
-  <p>You are {{percent}}% done with this shithole</p>
+<p>It is {{now}}</p>
+<p>You started mil service on {{start}}</p>
+<p>You have been serving the damn country for {{served}} days</p>
+<p>Your service ends on {{end}}</p>
+<p>That leaves {{left}} days of service left</p>
+<p>You are {{percent}}% done with this shithole</p>
 
-  <div class="bg-white p-8 shadow-lg shadow-slate-200 rounded-lg w-full md:w-2/3 lg:w-1/3">
-    <div class="flex items-center justify-between">
-      <span class="text-slate-400 text-sm text-slate-500">Sõduri Baaskursus</span>
-      <span class="px-2 py-1 bg-teal-50 rounded-lg text-xs text-teal-400 font-medium min-w-[46px] text-center">100%</span>
-    </div>
-  
-    <div class="w-full bg-slate-100 h-1 mb-6 mt-2">
-      <div class="bg-teal-400 h-1 rounded" style="width: 100%"></div>
-    </div>
-  
-    <div class="flex items-center justify-between">
-      <span class="text-slate-400 text-sm text-slate-500">Nooremallohvitseeri Baaskursus</span>
-      <span class="px-2 py-1 bg-teal-50 rounded-lg text-xs text-teal-400 font-medium min-w-[46px] text-center">99%</span>
-    </div>
-  
-    <div class="w-full bg-slate-100 h-1 mb-6 mt-2">
-      <div class="bg-teal-400 h-1 rounded" style="width: 99%"></div>
-    </div>
-  
-    <div class="flex items-center justify-between">
-      <span class="text-slate-400 text-sm text-slate-500">Nooremallohvitseeri Erialakursus (Jaoülem)</span>
-      <span class="px-2 py-1 bg-teal-50 rounded-lg text-xs text-teal-400 font-medium min-w-[46px] text-center">0%</span>
-    </div>
-  
-    <div class="w-full bg-slate-100 h-1 mb-6 mt-2">
-      <div class="bg-teal-400 h-1 rounded" style="width: 0%"></div>
-    </div>
-  
-    <div class="flex items-center justify-between">
-      <span class="text-slate-400 text-sm text-slate-500">Mingi lambi tix</span>
-      <span class="px-2 py-1 bg-teal-50 rounded-lg text-xs text-teal-400 font-medium min-w-[46px] text-center">0%</span>
-    </div>
-  
-    <div class="w-full bg-slate-100 h-1 mb-6 mt-2">
-      <div class="bg-teal-400 h-1 rounded" style="width: 0%"></div>
-    </div>
-
-    <div class="flex items-center justify-between">
-      <span class="text-slate-600 text-sm text-slate-600">Teenistus kokku</span>
-      <span class="px-2 py-1 bg-teal-50 rounded-lg text-xs text-teal-400 font-medium min-w-[46px] text-center">{{percent}}%</span>
-    </div>
-    <div class="overflow-hidden h-4 mb-4 mt-2 text-xs flex rounded bg-emerald-200">
-      <div style="width: 10%" class="shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center bg-red-500"></div>
-      <div style="width: 15%" class="shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center bg-orange-500"></div>
-      <div style="width: 25%" class="shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center bg-emerald-500"></div>
-    </div>
-  
+<div class="bg-white p-8 shadow-lg shadow-slate-200 rounded-lg w-full md:w-2/3 lg:w-1/3">
+  <div class="flex items-center justify-between">
+    <span class="text-slate-400 text-sm text-slate-500">Teenistus</span>
+    <span class="px-2 py-1 bg-teal-50 rounded-lg text-xs text-teal-400 font-medium min-w-[46px] text-center">{{percent}}%</span>
   </div>
+
+  <div class="w-full bg-slate-100 h-4 mb-6 mt-2 rounded">
+    <div class="bg-teal-400 h-4 rounded text-xs text-center text-white" style="width: {{percent}}%">
+      {{served}} / {{totalDays}}
+    
+    </div>
+  </div>
+
+  <div class="flex flex-row justify-between">
+
+    {%for m in weeks%}
+      <div class="flex flex-col relative">
+      {%for w in m%}
+        <div class="overflow-hidden shadow-lg shadow-slate-200 h-8 w-8 mb-4 mt-2 text-xs rounded bg-slate-200">
+          <div class="h-8 bg-teal-400 rounded shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center" style="width: {{w.percent}}%"></div>
+<!--           {{w.date}} -->
+        </div>
+      {%endfor%}
+      </div>
+    {%endfor%}
+  </div>
+
+
+</div>
 {% endblock content %}
