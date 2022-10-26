@@ -30,25 +30,30 @@
       <div class="bg-teal-400 h-4 rounded text-xs text-center text-white" style="width: {{percent}}%">
         {{served}} / {{totalDays}}
       </div>
+    </div>
+    <!-- the horizontal spacing is fucked -->
       <div
-        class="opacity-0 w-full ml-50 bg-teal-400 text-white text-center text-xs rounded-lg py-2 absolute z-10 group-hover:opacity-100 bottom-full -left-1/2 px-3 pointer-events-none">
+        class="opacity-0 px-2 left-1/2 -ml-6 bg-teal-400 text-white text-center text-xs rounded-lg py-2 absolute z-10 group-hover:opacity-100 bottom-full pointer-events-none">
         {{left}} days left
         <svg class="absolute text-black h-2 w-full left-0 top-full" x="0px" y="0px" viewBox="0 0 255 255" xml:space="preserve">
           <polygon class="fill-current" points="0,0 127.5,127.5 255,0" />
         </svg>
       </div>
-    </div>
   </div>
 
   <div class="flex flex-row justify-between">
 
-    {%for m in weeks%}
-    <div class="flex flex-col relative">
-      {%for w in m%}
+    {% for m in weeks %}
+    <div class="flex flex-col relative text-center text-white justify-center">
+      {% for w in m %}
       <div class="overflow-hidden shadow-lg shadow-slate-200 h-8 w-8 mb-4 mt-2 text-xs rounded bg-slate-200">
-        <div class="h-8 bg-teal-400 rounded shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center"
-          style="width: {{w.percent}}%"></div>
-        <!--           {{w.date}} -->
+        <div class="absolute h-8 bg-teal-400 rounded shadow-none flex flex-col "
+          style="width: {{w.percent}}%">
+        </div>
+        <div class="absolute mb-4 text-xs w-7">
+            {{w.month}}  
+          {{w.monday_day}}
+        </div>
       </div>
       {%endfor%}
     </div>

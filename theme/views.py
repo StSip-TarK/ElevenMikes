@@ -24,7 +24,7 @@ def index(request):
 
     weeks = []
     monday = start_of_service
-    for m in range(11):
+    for m in range(12):
         month = []
         for w in range(4):
             done = None
@@ -38,7 +38,9 @@ def index(request):
 
 
             month += [{
-                'date': monday,
+                'date': monday.strftime("%b %d"),
+                'month': monday.strftime("%b"),
+                'monday_day': monday.strftime("%d"),
                 'percent': done
             }]
             monday += timedelta(days=7)
