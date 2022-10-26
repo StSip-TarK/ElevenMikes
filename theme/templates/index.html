@@ -40,7 +40,15 @@
     {% for m in weeks %}
     <div class="flex flex-col relative text-center text-white justify-center">
       {% for w in m %}
-      <div class="overflow-hidden shadow-lg shadow-slate-200 h-8 w-8 mb-4 mt-2 text-xs rounded bg-slate-200">
+        {% if w.course == 'SBK' %}
+        <div class="border-4 border-rose-600 overflow-hidden shadow-lg shadow-slate-200 h-8 w-8 mb-4 mt-2 text-xs rounded bg-slate-200">
+        {% elif w.course == 'NABK' %}
+        <div class="border-4 border-blue-600 overflow-hidden shadow-lg shadow-slate-200 h-8 w-8 mb-4 mt-2 text-xs rounded bg-slate-200">
+        {% elif w.course == 'NAEK' %}
+        <div class="border-4 border-red-600 overflow-hidden shadow-lg shadow-slate-200 h-8 w-8 mb-4 mt-2 text-xs rounded bg-slate-200">
+        {% else %}
+        <div class="border-4 border-slate-600 overflow-hidden shadow-lg shadow-slate-200 h-8 w-8 mb-4 mt-2 text-xs rounded bg-slate-200">
+        {% endif %}
         <div class="absolute h-8 bg-teal-400 rounded shadow-none flex flex-col "
           style="width: {{w.percent}}%">
         </div>
