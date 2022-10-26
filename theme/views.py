@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from django.template import loader
 from datetime import date, timedelta
+from .models import Course
 
 """ def index(request):
   template = loader.get_template('index.html')
@@ -22,8 +23,13 @@ def index(request):
     NAEK = (date(2022, 10, 24), date(2022, 12, 2))
     Holiday = (date(2022, 12, 19), date(2023, 1, 1))
 
+    # courses
+    all_courses = Course.objects.all()
+    print(all_courses)
+
     weeks = []
     monday = start_of_service
+    current_course = all_courses[0]
     for m in range(12):
         month = []
         for w in range(4):
@@ -35,18 +41,23 @@ def index(request):
             else:
                 done = 0
             
-
+            for c in all_courses:
+                if c.start_date < monday < c.end_date:
+                  current_course = c
 
             month += [{
                 'date': monday.strftime("%b %d"),
                 'month': monday.strftime("%b"),
                 'monday_day': monday.strftime("%d"),
-                'percent': done
+                'percent': done,
+                'course': current_course.abr_name
             }]
             monday += timedelta(days=7)
 
         weeks += [month]
     print(weeks)
+
+
 
     context = {
         "start": start_of_service,
