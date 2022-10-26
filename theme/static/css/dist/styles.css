@@ -802,6 +802,10 @@ select {
   margin-right: auto;
 }
 
+.mt-8 {
+  margin-top: 2rem;
+}
+
 .ml-6 {
   margin-left: 1.5rem;
 }
