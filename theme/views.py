@@ -29,7 +29,6 @@ def index(request):
 
     weeks = []
     monday = start_of_service
-    current_course = all_courses[0]
     for m in range(12):
         month = []
         for w in range(4):
@@ -41,16 +40,19 @@ def index(request):
             else:
                 done = 0
             
+
+            current_course = None
             for c in all_courses:
-                if c.start_date < monday < c.end_date:
-                  current_course = c
+                if c.start_date <= monday < c.end_date:
+                  current_course = c.abr_name
+
 
             month += [{
                 'date': monday.strftime("%b %d"),
                 'month': monday.strftime("%b"),
                 'monday_day': monday.strftime("%d"),
                 'percent': done,
-                'course': current_course.abr_name
+                'course': current_course
             }]
             monday += timedelta(days=7)
 
