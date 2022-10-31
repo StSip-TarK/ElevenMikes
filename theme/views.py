@@ -33,7 +33,7 @@ def index(request):
         month = []
         for w in range(4):
             done = None
-            if monday < date.today() < (monday + timedelta(days=7)):
+            if monday <= date.today() < (monday + timedelta(days=7)):
                 done = 100* (date.today().weekday()+1) / 7
             elif monday < date.today():
                 done = 100
@@ -57,7 +57,7 @@ def index(request):
             monday += timedelta(days=7)
 
         weeks += [month]
-    print(weeks)
+    #print(weeks)
 
 
 
